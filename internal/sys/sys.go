@@ -30,7 +30,7 @@ func (a *Stats) OnStartup(ctx context.Context) {
 	go func() {
 		for {
 			runtime.EventsEmit(a.ctx, "cpu_usage", a.GetCPUUsage())
-			time.Sleep(1 * time.Second)
+			time.Sleep(time.Millisecond * 100)
 		}
 	}()
 }

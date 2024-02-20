@@ -14,7 +14,6 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import {WindowRefService} from './service/window-ref.service';
-import {NzProgressModule} from 'ng-zorro-antd/progress';
 
 registerLocaleData(en);
 
@@ -31,7 +30,6 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzProgressModule,
   ],
   providers: [
     WindowRefService,
