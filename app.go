@@ -15,8 +15,8 @@ func NewApp() *App {
 	return &App{}
 }
 
-// startup is called at application startup
-func (a *App) startup(ctx context.Context) {
+// OnStartup is called at application startup
+func (a *App) OnStartup(ctx context.Context) {
 	// Perform your setup here
 	a.ctx = ctx
 }

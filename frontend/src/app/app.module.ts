@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import {WindowRefService} from './service/window-ref.service';
+import {NzProgressModule} from 'ng-zorro-antd/progress';
 
 registerLocaleData(en);
 
@@ -28,9 +30,11 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
+    NzProgressModule,
   ],
   providers: [
+    WindowRefService,
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]

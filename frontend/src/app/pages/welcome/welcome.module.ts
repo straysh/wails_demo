@@ -3,11 +3,19 @@ import { NgModule } from '@angular/core';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 
 import { WelcomeComponent } from './welcome.component';
+import {WindowRefService} from '../../service/window-ref.service';
+import {NzProgressModule} from 'ng-zorro-antd/progress';
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule],
+  imports: [
+    WelcomeRoutingModule,
+    NzProgressModule,
+  ],
   declarations: [WelcomeComponent],
-  exports: [WelcomeComponent]
+  exports: [WelcomeComponent],
+  providers: [
+    WindowRefService,
+  ],
 })
 export class WelcomeModule { }

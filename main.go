@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"embed"
 	"log"
 
@@ -10,6 +11,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
+	"wails_demo/internal/sys"
 )
 
 //go:embed all:frontend/dist
@@ -21,6 +23,7 @@ var icon []byte
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	stats := sys.NewStats()
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -40,16 +43,21 @@ func main() {
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		Menu:             nil,
-		Logger:           nil,
-		LogLevel:         logger.DEBUG,
-		OnStartup:        app.startup,
+		Menu:     nil,
+		Logger:   nil,
+		LogLevel: logger.DEBUG,
+		//OnStartup:        app.startup,
+		OnStartup: func(ctx context.Context) {
+			app.OnStartup(ctx)
+			stats.OnStartup(ctx)
+		},
 		OnDomReady:       app.domReady,
 		OnBeforeClose:    app.beforeClose,
 		OnShutdown:       app.shutdown,
 		WindowStartState: options.Normal,
 		Bind: []interface{}{
 			app,
+			stats,
 		},
 		// Windows platform specific options
 		Windows: &windows.Options{
